@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
-import Detail from "./Pages/Detail";
-import Error from "./Pages/Error";
-import Home from "./Pages/Home";
+import Home from "./pages/home";
+import Detail from "./pages/detail";
+import Error from "./pages/error";
 import GeneralLayout from "./layout/GeneralLayout";
 
 interface RouterBase {
@@ -18,6 +18,10 @@ const routerData: RouterBase[] = [
     path: "/detail/:id",
     element: <Detail />,
   },
+  {
+    path: "*",
+    element: <Error />,
+  },
 ];
 
 export const routers = createBrowserRouter(
@@ -27,5 +31,6 @@ export const routers = createBrowserRouter(
       element: <GeneralLayout>{router.element}</GeneralLayout>,
       errorElement: <Error />,
     };
-  })
+  }),
+  { basename: process.env.PUBLIC_URL }
 );
